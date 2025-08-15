@@ -7,6 +7,7 @@ import ProjectsWindow from './windows/ProjectsWindow';
 import ContactWindow from './windows/ContactWindow';
 import GameWindow from './windows/GameWindow';
 import type { WindowManagerProps, WindowState } from '../types';
+import ResumeWindow from './windows/ResumeWindow';
 
 
 function WindowManager({
@@ -59,6 +60,12 @@ function WindowManager({
         return (
           <Window {...commonProps} title="Contact">
             <ContactWindow />
+          </Window>
+        );
+      case 'resume':
+        return (
+          <Window {...commonProps} title="Resume">
+            <ResumeWindow />
           </Window>
         );
       default:

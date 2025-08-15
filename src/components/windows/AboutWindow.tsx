@@ -2,7 +2,7 @@ import { about } from '../../data/data';
 
 function AboutWindow() {
   return (
-    <div className="text-cyan-100 font-['Courier_New',monospace] leading-6 p-4">
+    <div className="text-cyan-100 leading-6 p-4">
       {/* About Text */}
       <p className="mb-4">{about.text}</p>
 

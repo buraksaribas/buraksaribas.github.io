@@ -10,10 +10,10 @@ function DesktopIcon({ id, label, icon, top, left, onDoubleClick }: DesktopIconP
   const iconRef = useRef<HTMLDivElement>(null);
 
   const clampPosition = (pos: { top: number; left: number }) => {
-    const iconWidth = 80; // Approximate width of icon (adjust based on actual size)
-    const iconHeight = 100; // Approximate height of icon (adjust based on actual size)
+    const iconWidth = 80;
+    const iconHeight = 100;
     const maxX = window.innerWidth - iconWidth;
-    const maxY = window.innerHeight - iconHeight - 48; // Account for taskbar height (~48px)
+    const maxY = window.innerHeight - iconHeight - 48;
 
     return {
       top: Math.max(0, Math.min(pos.top, maxY)),
@@ -21,13 +21,11 @@ function DesktopIcon({ id, label, icon, top, left, onDoubleClick }: DesktopIconP
     };
   };
 
-  // Initialize position and adjust on window resize
   useEffect(() => {
     const handleResize = () => {
       setPosition((prev) => clampPosition(prev));
     };
 
-    // Set initial clamped position
     setPosition(clampPosition({ top, left }));
 
     window.addEventListener('resize', handleResize);

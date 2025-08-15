@@ -37,6 +37,13 @@ const initialWindows: WindowsState = {
     isMaximized: false,
     position: { top: 250, left: 180, width: "600px", height: "500px" },
   },
+  resume: {
+    isOpen: false,
+    isMinimized: true,
+    zIndex: 100,
+    isMaximized: false,
+    position: { top: 250, left: 180, width: "600px", height: "500px" },
+  },
   games: {
     isOpen: false,
     isMinimized: false,

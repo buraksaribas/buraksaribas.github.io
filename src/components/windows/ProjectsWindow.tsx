@@ -2,7 +2,7 @@ import { projects } from '../../data/data';
 
 function ProjectsWindow() {
   return (
-    <div className="text-cyan-100 font-['Courier_New',monospace] p-4">
+    <div className="text-cyan-100 p-4">
       {projects.map((project) => (
         <div
           key={project.title}
