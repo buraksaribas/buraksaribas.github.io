@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { WindowsState } from "../types";
+import { useIsMobile } from "./useIsMobile";
 
 const initialWindows: WindowsState = {
   terminal: {
@@ -80,18 +81,31 @@ const initialWindows: WindowsState = {
 export const useWindows = () => {
   const [windows, setWindows] = useState<WindowsState>(initialWindows);
   const [zIndexCounter, setZIndexCounter] = useState(200);
+  const { isMobile } = useIsMobile();
 
   const openWindow = (id: string) => {
     setZIndexCounter((prev) => prev + 1);
-    setWindows((prev) => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
+    setWindows((prev) => {
+      const window = prev[id];
+      let updatedWindow = {
+        ...window,
         isOpen: true,
         isMinimized: false,
         zIndex: zIndexCounter + 1,
-      },
-    }));
+      };
+
+      if (isMobile) {
+        if (!window.savedPosition) {
+          updatedWindow.savedPosition = window.position;
+        }
+        updatedWindow.isMaximized = true;
+      }
+
+      return {
+        ...prev,
+        [id]: updatedWindow,
+      };
+    });
   };
 
   const closeWindow = (id: string) => {
