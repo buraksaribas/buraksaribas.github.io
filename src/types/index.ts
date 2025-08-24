@@ -23,10 +23,11 @@ export interface DesktopIconProps {
   id: string;
   label: string;
   icon: React.ReactNode;
-  top: number;
-  left: number;
+  top?: number;
+  left?: number;
   onDoubleClick: (id: string) => void;
   isOpen?: boolean;
+  isMobile?: boolean;
 }
 
 export interface WindowState {

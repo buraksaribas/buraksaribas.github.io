@@ -1,14 +1,15 @@
-import MatrixBackground from './components/MatrixBackground';
-import IntroScreen from './components/IntroScreen';
-import { useBootSequence } from './hooks/useBootSequence';
-import { useWindows } from './hooks/useWindows';
-import BootScreen from './components/BootScreen';
-import SystemBar from './components/SystemBar';
-import Desktop from './components/Desktop';
-import WindowManager from './components/WindowManager';
+import MatrixBackground from "./components/MatrixBackground";
+import IntroScreen from "./components/IntroScreen";
+import { useBootSequence } from "./hooks/useBootSequence";
+import { useWindows } from "./hooks/useWindows";
+import BootScreen from "./components/BootScreen";
+import SystemBar from "./components/SystemBar";
+import Desktop from "./components/Desktop";
+import WindowManager from "./components/WindowManager";
 
 function App() {
-  const { isPoweredOn, isBooting, bootText, bootProgress, handlePowerOn } = useBootSequence();
+  const { isPoweredOn, isBooting, bootText, bootProgress, handlePowerOn } =
+    useBootSequence();
   const {
     windows,
     openWindow,
@@ -16,18 +17,21 @@ function App() {
     minimizeWindow,
     maximizeWindow,
     bringToFront,
-    getActiveWindow
+    getActiveWindow,
   } = useWindows();
 
-  const handleWindowAction = (id: string, action: 'open' | 'minimize' | 'bringToFront') => {
+  const handleWindowAction = (
+    id: string,
+    action: "open" | "minimize" | "bringToFront",
+  ) => {
     switch (action) {
-      case 'open':
+      case "open":
         openWindow(id);
         break;
-      case 'minimize':
+      case "minimize":
         minimizeWindow(id);
         break;
-      case 'bringToFront':
+      case "bringToFront":
         bringToFront(id);
         break;
     }
@@ -36,7 +40,7 @@ function App() {
   const activeWindowId = getActiveWindow();
 
   if (!isPoweredOn && !isBooting) {
-    return <IntroScreen onEnter={handlePowerOn} />
+    return <IntroScreen onEnter={handlePowerOn} />;
   }
 
   if (isBooting) {
